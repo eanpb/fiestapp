@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>FIESTAPP — Encuentra tu próxima fiesta</title>
+  <!-- iOS PWA -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="FIESTAPP" />
+  <meta name="theme-color" content="#0a0a0f" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ════════ NAVBAR ════════ -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">FIEST<span class="accent">APP</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#hero" class="nav-link active">Inicio</a>
+        <a href="#events" class="nav-link">Eventos</a>
+        <a href="#map" class="nav-link">Mapa</a>
+      </div>
+      <button class="btn-primary nav-cta">Publicar Evento</button>
+    </div>
+  </nav>
+
+  <!-- ════════ iOS-STYLE BOTTOM TAB BAR ════════ -->
+  <nav class="tab-bar">
+    <a href="#hero" class="tab-item active" data-tab="hero">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Inicio</span>
+    </a>
+    <a href="#events" class="tab-item" data-tab="events">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span>Eventos</span>
+    </a>
+    <a href="#map" class="tab-item" data-tab="map">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+      <span>Mapa</span>
+    </a>
+    <a href="#" class="tab-item" onclick="document.getElementById('searchInput').focus(); return false;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <span>Buscar</span>
+    </a>
+  </nav>
+
+  <!-- ════════ HERO ════════ -->
+  <section id="hero" class="hero">
+    <div class="hero-bg">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="gradient-orb orb-3"></div>
+      <div class="grid-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">🔥 +8 fiestas esta semana</div>
+      <h1 class="hero-title">
+        Encuentra tu<br />
+        <span class="gradient-text">próxima fiesta</span>
+      </h1>
+      <p class="hero-subtitle">
+        Descubre los mejores eventos, fiestas y festivales cerca de ti.
+        Mira quién toca, precios, ubicación y más — todo en un mapa interactivo.
+      </p>
+      <div class="hero-search">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="heroSearch" placeholder="Buscar evento, artista o lugar..." />
+          <button class="search-btn" onclick="searchFromHero()">Buscar</button>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">8</span><span class="stat-label">Eventos</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">18K+</span><span class="stat-label">Asistentes</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">20+</span><span class="stat-label">Artistas</span></div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Explora</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ════════ EVENTS ════════ -->
+  <section id="events" class="events-section">
+    <div class="section-container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Próximos <span class="gradient-text">Eventos</span></h2>
+          <p class="section-subtitle">Lo mejor de la escena. Selecciona un género o busca tu favorito.</p>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters-bar">
+        <div class="genre-filters" id="genreFilters"></div>
+        <div class="search-filter">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="searchInput" placeholder="Filtrar..." />
+        </div>
+      </div>
+
+      <!-- Event Grid -->
+      <div class="events-grid" id="eventsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ════════ MAP ════════ -->
+  <section id="map" class="map-section">
+    <div class="section-container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Mapa de <span class="gradient-text">Fiestas</span></h2>
+          <p class="section-subtitle">Explora los eventos según su ubicación. Haz clic en un marcador para más info.</p>
+        </div>
+      </div>
+      <div class="map-wrapper">
+        <div id="mapContainer" class="map-container"></div>
+        <div class="map-sidebar" id="mapSidebar">
+          <div class="sidebar-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48"><path d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+            <p>Selecciona un evento en el mapa</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ FOOTER ════════ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="logo-icon">⚡</span>
+          <span class="logo-text">FIEST<span class="accent">APP</span></span>
+          <p>Tu guía para las mejores fiestas y eventos.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#">Sobre nosotros</a>
+          <a href="#">Contacto</a>
+          <a href="#">FAQ</a>
+          <a href="#">Términos</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 FIESTAPP. Hecho con 🎶 y ❤️</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ════════ EVENT MODAL ════════ -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-img" id="modalImg"></div>
+      <div class="modal-body">
+        <div class="modal-tags" id="modalTags"></div>
+        <h2 id="modalTitle"></h2>
+        <p class="modal-subtitle" id="modalSubtitle"></p>
+        <div class="modal-meta">
+          <div class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span id="modalDate"></span></div>
+          <div class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="modalTime"></span></div>
+          <div class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg><span id="modalVenue"></span></div>
+        </div>
+        <p class="modal-description" id="modalDescription"></p>
+        <div class="modal-artists">
+          <h4>🎤 Line-up</h4>
+          <div class="artists-list" id="modalArtists"></div>
+        </div>
+        <div class="modal-footer">
+          <div class="modal-price" id="modalPrice"></div>
+          <div class="modal-capacity">
+            <div class="capacity-bar"><div class="capacity-fill" id="modalCapFill"></div></div>
+            <span id="modalCapText"></span>
+          </div>
+          <button class="btn-primary btn-ticket">🎟️ Comprar Entrada</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
