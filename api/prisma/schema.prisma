@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  password      String
+  name          String
+  username      String    @unique
+  avatar        String?
+  bio           String?
+  isPublic      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  organizedEvents Event[]      @relation("Organizer")
+  attendances     Attendance[]
+  sentRequests    Friendship[] @relation("Requester")
+  receivedRequests Friendship[] @relation("Addressee")
+  posts           Post[]
+}
+
+model Event {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  date        DateTime
+  endDate     DateTime?
+  lat         Float
+  lng         Float
+  address     String
+  venue       String?
+  price       Float    @default(0)
+  currency    String   @default("COP")
+  genre       String
+  artists     String   // JSON string array
+  imageUrl    String?
+  capacity    Int?
+  minAge      Int?
+  featured    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  organizerId String
+  organizer   User         @relation("Organizer", fields: [organizerId], references: [id])
+  attendances Attendance[]
+  posts       Post[]
+}
+
+model Attendance {
+  id        String   @id @default(uuid())
+  status    String   @default("going") // going, interested, maybe
+  createdAt DateTime @default(now())
+
+  userId  String
+  eventId String
+  user    User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  event   Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, eventId])
+}
+
+model Friendship {
+  id        String   @id @default(uuid())
+  status    String   @default("pending") // pending, accepted, blocked
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  requesterId String
+  addresseeId String
+  requester   User @relation("Requester", fields: [requesterId], references: [id], onDelete: Cascade)
+  addressee   User @relation("Addressee", fields: [addresseeId], references: [id], onDelete: Cascade)
+
+  @@unique([requesterId, addresseeId])
+}
+
+model Post {
+  id        String   @id @default(uuid())
+  content   String?
+  imageUrl  String?
+  type      String   @default("status") // status, photo, checkin
+  createdAt DateTime @default(now())
+
+  userId  String
+  eventId String?
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  event   Event? @relation(fields: [eventId], references: [id], onDelete: Cascade)
+}

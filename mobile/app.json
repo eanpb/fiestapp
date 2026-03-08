@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "FIESTAPP",
+    "slug": "fiestapp",
+    "version": "2.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "scheme": "fiestapp",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0a0a0a"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fiestapp.mobile",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "FIESTAPP necesita tu ubicación para mostrar eventos cercanos."
+      }
+    },
+    "android": {
+      "package": "com.fiestapp.mobile",
+      "adaptiveIcon": {
+        "backgroundColor": "#0a0a0a",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "permissions": ["ACCESS_FINE_LOCATION"]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-location"
+    ]
+  }
+}

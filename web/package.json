@@ -1,0 +1,27 @@
+{
+  "name": "fiestapp-web",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000"
+  },
+  "dependencies": {
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "axios": "^1.7.0",
+    "leaflet": "^1.9.4",
+    "react-leaflet": "^5.0.0",
+    "react-icons": "^5.4.0",
+    "js-cookie": "^3.0.5",
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.0.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "postcss": "^8.5.0"
+  }
+}
