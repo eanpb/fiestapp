@@ -113,12 +113,12 @@ export default function EventMap({
         });
 
       marker.bindPopup(
-        `<div style="min-width:220px;font-family:Inter,sans-serif;">
-          <div style="font-weight:700;font-size:14px;margin-bottom:6px;">${event.title}</div>
-          <div style="color:#667085;font-size:12px;margin-bottom:3px;">${event.venue}</div>
-          <div style="color:#667085;font-size:12px;margin-bottom:8px;">${formatDate(event.date)}</div>
+        `<div style="min-width:220px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;">
+          <div style="font-weight:700;font-size:14px;margin-bottom:6px;color:#f0f2f8;">${event.title}</div>
+          <div style="color:rgba(255,255,255,0.5);font-size:12px;margin-bottom:3px;">${event.venue}</div>
+          <div style="color:rgba(255,255,255,0.4);font-size:12px;margin-bottom:8px;">${formatDate(event.date)}</div>
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span style="color:#111827;font-size:11px;font-weight:600;text-transform:uppercase;">${accent}</span>
+            <span style="color:rgba(255,255,255,0.6);font-size:11px;font-weight:600;text-transform:uppercase;">${accent}</span>
             <span style="color:${color};font-weight:700;font-size:13px;">${formatPrice(event.price)}</span>
           </div>
         </div>`,
@@ -184,7 +184,7 @@ export default function EventMap({
     })
       .addTo(map)
       .bindPopup(
-        '<div style="font-family:Inter,sans-serif;font-weight:600;font-size:13px;">Tu ubicaci\u00f3n</div>',
+        '<div style="font-family:Plus Jakarta Sans,system-ui,sans-serif;font-weight:600;font-size:13px;color:#f0f2f8;">Tu ubicaci\u00f3n</div>',
         { closeButton: false, offset: [0, -8] }
       );
   }, [userLocation]);

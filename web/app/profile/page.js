@@ -35,7 +35,7 @@ function ProfilePage() {
     return (
       <div className="min-h-screen bg-bg">
         <Navbar />
-        <div className="pt-20 flex items-center justify-center" style={{ minHeight: 'calc(100vh - 80px)' }}>
+        <div className="pt-[92px] flex items-center justify-center" style={{ minHeight: 'calc(100vh - 80px)' }}>
           <div className="text-center">
             <span className="text-6xl block mb-4">👤</span>
             <h2 className="text-2xl font-black mb-2">Mi Perfil</h2>
@@ -53,7 +53,7 @@ function ProfilePage() {
   return (
     <div className="min-h-screen bg-bg">
       <Navbar />
-      <main className="pt-20 pb-12">
+      <main className="pt-[92px] pb-12">
         <div className="page-container max-w-2xl">
           {/* Profile Header */}
           <div className="card p-8 text-center mb-6">

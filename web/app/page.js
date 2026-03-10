@@ -9,8 +9,8 @@ import { getEvents } from '@/lib/api';
 import { formatPrice, formatDate, formatTime } from '@/lib/utils';
 import {
   FiSearch, FiMapPin, FiClock, FiChevronRight, FiX,
-  FiList, FiMap as FiMapIcon, FiSliders, FiNavigation,
-  FiLoader, FiAlertCircle, FiRefreshCw, FiCalendar, FiMenu,
+  FiList, FiMap as FiMapIcon,
+  FiLoader, FiAlertCircle, FiRefreshCw, FiCalendar, FiMenu, FiNavigation,
 } from 'react-icons/fi';
 
 const EventMap = dynamic(() => import('@/components/EventMap'), { ssr: false });
@@ -606,8 +606,17 @@ function HomePage() {
           {/* Results header */}
           <div className="flex shrink-0 items-center justify-between border-t border-b border-white/[0.06] px-4 py-2.5 text-sm text-text-muted">
             <span className="font-medium">{displayed.length} eventos</span>
-            <button className="inline-flex items-center gap-1.5 rounded-full border border-white/8 bg-white/[0.04] px-3 py-1.5 text-white/70">
-              <FiSliders size={12} /> Filtros
+            <button
+              onClick={handleLocation}
+              disabled={locationState === 'loading'}
+              className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 transition ${
+                locationState === 'active'
+                  ? 'border-accent/30 bg-accent/10 text-accent'
+                  : 'border-white/8 bg-white/[0.04] text-white/70 hover:bg-white/[0.06]'
+              }`}
+            >
+              {locationState === 'loading' ? <FiLoader size={12} className="animate-spin" /> : <FiNavigation size={12} />}
+              {locationState === 'active' ? 'Cercanos' : 'Ubicación'}
             </button>
           </div>
 

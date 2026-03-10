@@ -17,7 +17,7 @@ export default function GenreFilter({ selected, onSelect }) {
           {g.name}
         </button>
       ))}
-      <span className="shrink-0" style={{ minWidth: 8 }} />
+      <span className="shrink-0" style={{ minWidth: 16 }} />
     </div>
   );
 }

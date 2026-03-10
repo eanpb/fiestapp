@@ -52,7 +52,7 @@ function EventDetailPage() {
     return (
       <div className="min-h-screen bg-bg">
         <Navbar />
-        <div className="page-container pt-[96px]">
+        <div className="page-container pt-[88px]">
           <div className="max-w-4xl mx-auto">
             <div className="aspect-[21/9] shimmer rounded-2xl mb-6" />
             <div className="h-8 w-2/3 shimmer rounded mb-3" />
