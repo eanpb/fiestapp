@@ -7,19 +7,19 @@ export default function EventCard({ event, index = 0 }) {
   const genreColor = getGenreColor(event.genre);
 
   return (
-    <Link href={`/event/${event.id}`}>
-      <div
-        className="card-hover group cursor-pointer"
-        style={{ animationDelay: `${index * 80}ms` }}
-      >
+    <Link
+      href={`/event/${event.id}`}
+      className="card-hover group block h-full cursor-pointer"
+      style={{ animationDelay: `${index * 80}ms` }}
+    >
         <div className="relative aspect-[16/10] overflow-hidden">
           <img
             src={event.imageUrl || 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600'}
             alt={event.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07090d] via-[#07090d]/25 to-transparent" />
-          <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/40 to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#07090d] via-[#07090d]/25 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/40 to-transparent" />
 
           <div
             className="absolute left-4 top-4 rounded-full border px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] backdrop-blur-xl"
@@ -38,10 +38,10 @@ export default function EventCard({ event, index = 0 }) {
             </div>
           )}
 
-          <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4">
-            <div>
+          <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4">
+            <div className="min-w-0">
               <p className="mb-1 text-[11px] uppercase tracking-[0.16em] text-white/60">{formatDate(event.date)}</p>
-              <h3 className="max-w-[18rem] text-xl font-semibold tracking-[-0.03em] text-white transition-colors group-hover:text-white">
+              <h3 className="line-clamp-2 max-w-[18rem] text-xl font-semibold tracking-[-0.03em] text-white transition-colors group-hover:text-white">
                 {event.title}
               </h3>
             </div>
@@ -86,7 +86,7 @@ export default function EventCard({ event, index = 0 }) {
             )}
           </div>
         </div>
-      </div>
+      
     </Link>
   );
 }

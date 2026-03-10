@@ -35,7 +35,7 @@ function ExplorePage() {
   return (
     <div className="min-h-screen bg-bg">
       <Navbar />
-      <main className="pt-20 pb-12">
+      <main className="pt-[96px] pb-12">
         <div className="page-container">
           <h1 className="text-3xl font-black mb-6">Explorar Eventos</h1>
 
@@ -64,7 +64,9 @@ function ExplorePage() {
             </button>
           </div>
 
-          <GenreFilter selected={genre} onSelect={setGenre} />
+          <div className="mt-1">
+            <GenreFilter selected={genre} onSelect={setGenre} />
+          </div>
 
           <div className="mt-4 text-sm text-text-muted mb-6">
             {events.length} evento{events.length !== 1 ? 's' : ''}

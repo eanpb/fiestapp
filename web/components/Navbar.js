@@ -73,8 +73,15 @@ export default function Navbar() {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden border-t border-white/8 bg-[rgba(7,9,13,0.92)] animate-fade-in backdrop-blur-3xl">
-          <div className="page-container py-4 space-y-2">
+        <>
+          <button
+            type="button"
+            aria-label="Cerrar menú"
+            onClick={() => setMenuOpen(false)}
+            className="fixed inset-0 top-[calc(env(safe-area-inset-top)+74px)] z-[-1] bg-black/45 md:hidden"
+          />
+          <div className="md:hidden border-t border-white/8 bg-[rgba(7,9,13,0.94)] animate-fade-in backdrop-blur-3xl">
+            <div className="page-container py-4 space-y-2">
             <Link href="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 rounded-2xl border border-white/5 bg-white/[0.02] px-4 py-3 transition-colors hover:bg-white/[0.04]">
               <FiMap size={20} className="text-accent" /> <span>Mapa</span>
             </Link>
@@ -110,7 +117,8 @@ export default function Navbar() {
               </>
             )}
           </div>
-        </div>
+          </div>
+        </>
       )}
     </nav>
   );

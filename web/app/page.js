@@ -55,9 +55,9 @@ function FeaturedCard({ event, distance, index, onClick, selected }) {
         loading="lazy"
         className="absolute inset-0 h-full w-full object-cover image-pan"
       />
-      <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(2,3,6,0.98) 0%, rgba(2,3,6,0.72) 32%, rgba(2,3,6,0.22) 58%, transparent 82%)' }} />
+      <div className="pointer-events-none absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(2,3,6,0.98) 0%, rgba(2,3,6,0.72) 32%, rgba(2,3,6,0.22) 58%, transparent 82%)' }} />
       {selected && (
-        <div className="absolute inset-0 rounded-[1.6rem] ring-1 ring-accent/30" />
+        <div className="pointer-events-none absolute inset-0 rounded-[1.6rem] ring-1 ring-accent/30" />
       )}
 
       <div className="absolute left-4 top-4">
@@ -118,7 +118,7 @@ function CompactCard({ event, selected, onTap, distance, index }) {
       {/* Image — own overflow-hidden so text is NOT affected */}
       <div className="relative flex-shrink-0 overflow-hidden" style={{ width: 72, height: 72, borderRadius: '1rem', minWidth: 72 }}>
         <img src={event.imageUrl} alt={event.title} loading="lazy" className="h-full w-full object-cover transition duration-400 group-hover:scale-105" />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.38), transparent 60%)' }} />
+        <div className="pointer-events-none absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.38), transparent 60%)' }} />
       </div>
       {/* Text block — no overflow:hidden on parent so rounded border doesn't clip */}
       <div className="min-w-0 flex-1 pr-1">

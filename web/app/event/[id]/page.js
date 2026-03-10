@@ -52,7 +52,7 @@ function EventDetailPage() {
     return (
       <div className="min-h-screen bg-bg">
         <Navbar />
-        <div className="pt-20 page-container">
+        <div className="page-container pt-[96px]">
           <div className="max-w-4xl mx-auto">
             <div className="aspect-[21/9] shimmer rounded-2xl mb-6" />
             <div className="h-8 w-2/3 shimmer rounded mb-3" />
@@ -93,7 +93,7 @@ function EventDetailPage() {
             alt={event.title}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/40 to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg via-bg/40 to-transparent" />
 
           {/* Back button */}
           <button
@@ -262,8 +262,8 @@ function EventDetailPage() {
         </div>
 
         {/* Fixed Bottom CTA */}
-        <div className="fixed bottom-0 left-0 right-0 glass border-t border-border z-50">
-          <div className="page-container py-4 flex items-center justify-between gap-4">
+        <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-border glass">
+          <div className="page-container flex items-center justify-between gap-4 py-4" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)' }}>
             <div>
               <p className="font-bold text-lg" style={{ color: genreColor }}>{formatPrice(event.price, event.currency)}</p>
               <p className="text-xs text-text-muted">{formatDate(event.date)} · {event.venue}</p>
