@@ -85,9 +85,9 @@ function EventDetailPage() {
     <div className="min-h-screen bg-bg">
       <Navbar />
 
-      <main className="pt-16">
+      <main className="pt-[88px]">
         {/* Hero Image */}
-        <div className="relative h-[40vh] sm:h-[50vh] overflow-hidden">
+        <div className="relative h-[42vh] sm:h-[52vh] overflow-hidden">
           <img
             src={event.imageUrl || 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200'}
             alt={event.title}

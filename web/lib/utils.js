@@ -1,17 +1,17 @@
 export const GENRES = [
-  { name: 'Todos', emoji: '🎉', color: '#c8ff00' },
-  { name: 'Techno', emoji: '🔊', color: '#ff0055' },
-  { name: 'House', emoji: '🏠', color: '#00ccff' },
-  { name: 'Deep House', emoji: '🌊', color: '#0088cc' },
-  { name: 'Reggaeton', emoji: '🔥', color: '#ff6600' },
-  { name: 'Hip-Hop', emoji: '🎤', color: '#ffcc00' },
-  { name: 'Electronic', emoji: '⚡', color: '#aa00ff' },
-  { name: 'Rock', emoji: '🎸', color: '#ff2222' },
-  { name: 'Pop', emoji: '🎵', color: '#ff66cc' },
-  { name: 'Salsa', emoji: '💃', color: '#ff4488' },
-  { name: 'Vallenato', emoji: '🪗', color: '#ffaa44' },
-  { name: 'Cumbia', emoji: '🥁', color: '#44ddaa' },
-  { name: 'Latin', emoji: '🌴', color: '#ff8844' },
+  { name: 'Todos', color: '#8b5cf6', accent: 'All' },
+  { name: 'Techno', color: '#7c3aed', accent: 'TN' },
+  { name: 'House', color: '#0ea5e9', accent: 'HS' },
+  { name: 'Deep House', color: '#2563eb', accent: 'DH' },
+  { name: 'Reggaeton', color: '#f97316', accent: 'RG' },
+  { name: 'Hip-Hop', color: '#f59e0b', accent: 'HH' },
+  { name: 'Electronic', color: '#8b5cf6', accent: 'EL' },
+  { name: 'Rock', color: '#ef4444', accent: 'RK' },
+  { name: 'Pop', color: '#ec4899', accent: 'PP' },
+  { name: 'Salsa', color: '#d946ef', accent: 'SA' },
+  { name: 'Vallenato', color: '#f59e0b', accent: 'VL' },
+  { name: 'Cumbia', color: '#14b8a6', accent: 'CU' },
+  { name: 'Latin', color: '#fb7185', accent: 'LT' },
 ];
 
 export function getGenreColor(genre) {
@@ -19,9 +19,9 @@ export function getGenreColor(genre) {
   return g ? g.color : '#c8ff00';
 }
 
-export function getGenreEmoji(genre) {
+export function getGenreAccent(genre) {
   const g = GENRES.find(g => g.name === genre);
-  return g ? g.emoji : '🎉';
+  return g ? g.accent : 'EV';
 }
 
 export function formatPrice(price, currency = 'COP') {

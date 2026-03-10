@@ -1,10 +1,21 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+function getApiUrl() {
+  if (process.env.NEXT_PUBLIC_API_URL) {
+    return process.env.NEXT_PUBLIC_API_URL;
+  }
+
+  if (typeof window !== 'undefined') {
+    const { protocol, hostname } = window.location;
+    return `${protocol}//${hostname}:3001`;
+  }
+
+  return 'http://localhost:3001';
+}
 
 const api = axios.create({
-  baseURL: `${API_URL}/api`,
+  baseURL: `${getApiUrl()}/api`,
   headers: { 'Content-Type': 'application/json' },
 });
 

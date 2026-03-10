@@ -41,35 +41,35 @@ async function main() {
   ]);
   console.log('✅ Created friendships');
 
-  // ── EVENTS (Colombia: Bogotá, Medellín, Cali, Cartagena, Barranquilla) ──
+  // ── EVENTS (Chile: Santiago — Bellavista, Barrio Italia, Las Condes, Providencia, etc.) ──
   const now = new Date();
   const day = 86400000;
 
   const events = await Promise.all([
     prisma.event.create({
       data: {
-        title: 'Baum Festival 2026',
-        description: 'El festival de electrónica más grande de Colombia. 3 escenarios, 24 artistas, una noche inolvidable. Dress code: all black.',
+        title: 'Blondie Techno Night',
+        description: 'La noche más oscura de Santiago vuelve al club de referencia. 3 salas, luces stroboscópicas, line-up all-black. Dress code obligatorio: negro total.',
         date: new Date(now.getTime() + 3 * day),
         endDate: new Date(now.getTime() + 3 * day + 10 * 3600000),
-        lat: 4.667, lng: -74.056,
-        address: 'Cra 13 #82-74, Bogotá', venue: 'Baum Club',
-        price: 180000, genre: 'Techno',
+        lat: -33.4310, lng: -70.6440,
+        address: 'Loreto 68, Bellavista, Santiago', venue: 'Club Blondie',
+        price: 18000, genre: 'Techno',
         artists: JSON.stringify(['Boris Brejcha', 'Amelie Lens', 'Local Resident']),
-        imageUrl: 'https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?w=800', 
+        imageUrl: 'https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?w=800',
         capacity: 3000, minAge: 18, featured: true,
         organizerId: users[2].id
       }
     }),
     prisma.event.create({
       data: {
-        title: 'Salsa al Parque',
-        description: 'El encuentro más grande de salsa en Cali. Orquestas en vivo, clases de baile y mucho sabor. Evento al aire libre, entrada libre.',
+        title: 'Salsa en el Parque',
+        description: 'El mejor encuentro de salsa en Santiago. Orquestas en vivo, clases abiertas y mucho sabor. Evento al aire libre, entrada liberada.',
         date: new Date(now.getTime() + 5 * day),
-        lat: 3.451, lng: -76.532,
-        address: 'Parque de la Música, Cali', venue: 'Parque de la Música',
+        lat: -33.3936, lng: -70.5779,
+        address: 'Av. Bicentenario 3600, Vitacura', venue: 'Parque Bicentenario',
         price: 0, genre: 'Salsa',
-        artists: JSON.stringify(['Grupo Niche', 'Son de Cali', 'Orquesta Guayacán']),
+        artists: JSON.stringify(['Orquesta Son del Pacífico', 'Grupo Karma', 'Los Conquistadores']),
         imageUrl: 'https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=800',
         capacity: 10000, featured: true,
         organizerId: users[4].id
@@ -77,13 +77,13 @@ async function main() {
     }),
     prisma.event.create({
       data: {
-        title: 'Reggaeton Beach Party',
-        description: 'La playa se enciende con los mejores beats de reggaetón. Open bar, piscina infinity, sunset DJ set. Dress code: white.',
+        title: 'Reggaeton Pool Party',
+        description: 'La piscina del W Santiago se convierte en la mejor fiesta del año. Open bar, DJ desde el atardecer. Dress code: blanco.',
         date: new Date(now.getTime() + 7 * day),
         endDate: new Date(now.getTime() + 7 * day + 8 * 3600000),
-        lat: 10.395, lng: -75.514,
-        address: 'Hotel Las Américas, Cartagena', venue: 'Las Américas Resort',
-        price: 250000, genre: 'Reggaeton',
+        lat: -33.4138, lng: -70.5969,
+        address: 'Isidora Goyenechea 3000, Las Condes', venue: 'W Santiago Hotel',
+        price: 25000, genre: 'Reggaeton',
         artists: JSON.stringify(['Feid', 'Ryan Castro', 'Blessd']),
         imageUrl: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800',
         capacity: 2000, minAge: 18, featured: true,
@@ -93,11 +93,11 @@ async function main() {
     prisma.event.create({
       data: {
         title: 'Underground Warehouse',
-        description: 'Sesión underground en bodega. Solo techno/house. Dirección revelada 2h antes. BYOB. Line-up secreto.',
+        description: 'Sesión underground en bodega secreta. Solo techno/house. Dirección revelada 2h antes. BYOB. Line-up anónimo.',
         date: new Date(now.getTime() + 2 * day),
-        lat: 6.248, lng: -75.574,
-        address: 'Ubicación secreta - Medellín', venue: 'Warehouse TBA',
-        price: 50000, genre: 'House',
+        lat: -33.4488, lng: -70.6387,
+        address: 'Ubicación secreta · Barrio Italia', venue: 'Galpón TBA',
+        price: 8000, genre: 'House',
         artists: JSON.stringify(['???', 'Residents Only']),
         imageUrl: 'https://images.unsplash.com/photo-1598387993441-a364f854c3e1?w=800',
         capacity: 500, minAge: 21,
@@ -106,13 +106,13 @@ async function main() {
     }),
     prisma.event.create({
       data: {
-        title: 'Carnaval Electrónico',
-        description: 'La versión electrónica del Carnaval de Barranquilla. Marimondas con bass drops. Cumbia meets techno.',
+        title: 'Festival Primavera Electrónica',
+        description: 'El festival open-air más esperado del año en Santiago. Cumbia meets techno, 4 escenarios, food trucks, campamento.',
         date: new Date(now.getTime() + 10 * day),
-        lat: 10.964, lng: -74.796,
-        address: 'Vía 40, Barranquilla', venue: 'Vía 40 Open Air',
-        price: 120000, genre: 'Electronic',
-        artists: JSON.stringify(['Bomba Estéreo', 'Acid Pauli', 'Nicola Cruz']),
+        lat: -33.4872, lng: -70.7195,
+        address: 'Av. Lo Errázuriz 1000, Cerrillos', venue: 'Parque Cerrillos',
+        price: 12000, genre: 'Electronic',
+        artists: JSON.stringify(['Bomba Estéreo', 'Nicola Cruz', 'Acid Pauli']),
         imageUrl: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800',
         capacity: 8000, featured: true,
         organizerId: users[2].id
@@ -121,12 +121,12 @@ async function main() {
     prisma.event.create({
       data: {
         title: 'Hip Hop Nights Vol. 12',
-        description: 'Freestyle battles, rap en vivo, graffiti en vivo. La cultura urbana se toma Medellín. MC, DJ, B-Boys, todo en una noche.',
+        description: 'Freestyle battles, rap en vivo, graffiti en vivo. La cultura urbana toma Santiago Centro. MC, DJ, B-Boys, todo en una noche.',
         date: new Date(now.getTime() + 4 * day),
-        lat: 6.210, lng: -75.571,
-        address: 'Calle 44 #70-29, Medellín', venue: 'Salon Amador',
-        price: 45000, genre: 'Hip-Hop',
-        artists: JSON.stringify(['Nanpa Básico', 'Akapellah', 'MC Local']),
+        lat: -33.4534, lng: -70.6514,
+        address: 'Bombero Ossa 1020, Santiago Centro', venue: 'Club Subterráneo',
+        price: 7000, genre: 'Hip-Hop',
+        artists: JSON.stringify(['Portavoz', 'Movimiento Original', 'MC Local']),
         imageUrl: 'https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=800',
         capacity: 800, minAge: 16,
         organizerId: users[0].id
@@ -134,26 +134,26 @@ async function main() {
     }),
     prisma.event.create({
       data: {
-        title: 'Fiesta Vallenata',
-        description: 'Los mejores acordeoneros del país en una noche. Vallenato tradicional y nueva ola. Con cena incluida.',
+        title: 'Noche de Cueca & Folclore',
+        description: 'Los mejores conjuntos folklóricos del país en el escenario más emblemático de Santiago. Cueca brava, fonda chic, huaso moderno.',
         date: new Date(now.getTime() + 6 * day),
-        lat: 4.710, lng: -74.072,
-        address: 'Cra 7 #67-49, Bogotá', venue: 'Gaira Café',
-        price: 95000, genre: 'Vallenato',
-        artists: JSON.stringify(['Silvestre Dangond', 'Elder Dayán', 'Rolando Ochoa']),
+        lat: -33.4562, lng: -70.6484,
+        address: 'San Diego 850, Santiago Centro', venue: 'Teatro Caupolicán',
+        price: 15000, genre: 'Folclore',
+        artists: JSON.stringify(['Los Huasos Quincheros', 'Millaray', 'Conjunto Cuncumén']),
         imageUrl: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=800',
-        capacity: 600,
+        capacity: 4500,
         organizerId: users[4].id
       }
     }),
     prisma.event.create({
       data: {
         title: 'Sunset Rooftop Sessions',
-        description: 'Deep house y cocktails artesanales en el rooftop más alto de Bogotá. Vista 360° de la ciudad. Smart casual.',
+        description: 'Deep house y cócteles artesanales en el rooftop del Costanera Center. Vista 360° de los Andes y la ciudad. Smart casual obligatorio.',
         date: new Date(now.getTime() + 1 * day),
-        lat: 4.651, lng: -74.055,
-        address: 'Clle 93a #11-12, Piso 28, Bogotá', venue: 'Alto Rooftop',
-        price: 75000, genre: 'Deep House',
+        lat: -33.4194, lng: -70.6073,
+        address: 'Av. Andrés Bello 2425, Providencia', venue: 'Sky Costanera',
+        price: 12000, genre: 'Deep House',
         artists: JSON.stringify(['Café del Mar residents', 'DJ Soulful Set']),
         imageUrl: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800',
         capacity: 200, minAge: 18,
@@ -162,29 +162,29 @@ async function main() {
     }),
     prisma.event.create({
       data: {
-        title: 'Pop Latino Festival',
-        description: 'Los hits más grandes del pop latino en un solo escenario. Karaoke zone, photobooth, y mucha buena vibra.',
+        title: 'Festival Pop Latino',
+        description: 'Los hits más grandes del pop latino en el estadio más icónico de Chile. Karaoke zone, photobooth, y mucha buena vibra.',
         date: new Date(now.getTime() + 12 * day),
-        lat: 6.265, lng: -75.566,
-        address: 'Parque Norte, Medellín', venue: 'Parque Norte',
-        price: 85000, genre: 'Pop',
-        artists: JSON.stringify(['Sebastián Yatra', 'Camilo', 'Manuel Turizo']),
+        lat: -33.4647, lng: -70.6027,
+        address: 'Av. Grecia 2001, Ñuñoa', venue: 'Estadio Nacional',
+        price: 22000, genre: 'Pop',
+        artists: JSON.stringify(['Sebastián Yatra', 'Camilo', 'Mon Laferte']),
         imageUrl: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800',
-        capacity: 15000, featured: true,
+        capacity: 55000, featured: true,
         organizerId: users[1].id
       }
     }),
     prisma.event.create({
       data: {
-        title: 'Rock al Río',
-        description: 'Festival de rock alternativo junto al río Cali. 2 escenarios, food trucks, craftbeer garden. Llueva o truene.',
+        title: 'Rock en Bellavista',
+        description: 'Noche de rock alternativo chileno en el corazón de Bellavista. 2 escenarios, food trucks, craftbeer garden.',
         date: new Date(now.getTime() + 14 * day),
-        lat: 3.437, lng: -76.522,
-        address: 'Bulevar del Río, Cali', venue: 'Bulevar del Río',
-        price: 60000, genre: 'Rock',
-        artists: JSON.stringify(['Diamante Eléctrico', 'Telebit', 'Canserbero Tribute']),
+        lat: -33.4300, lng: -70.6437,
+        address: 'Loreto 20, Bellavista, Santiago', venue: 'Club Chocolate',
+        price: 9000, genre: 'Rock',
+        artists: JSON.stringify(['Moral Distraída', 'Matorral', 'Tiro de Gracia']),
         imageUrl: 'https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=800',
-        capacity: 5000,
+        capacity: 1200,
         organizerId: users[0].id
       }
     }),

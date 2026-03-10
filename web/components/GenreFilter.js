@@ -14,9 +14,10 @@ export default function GenreFilter({ selected, onSelect }) {
               : 'genre-chip-inactive'
           }
         >
-          <span className="mr-1">{g.emoji}</span> {g.name}
+          {g.name}
         </button>
       ))}
+      <span className="shrink-0" style={{ minWidth: 8 }} />
     </div>
   );
 }
